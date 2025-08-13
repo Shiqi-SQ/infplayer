@@ -1,0 +1,30 @@
+{
+	"name": "infplayer",
+	"version": "0.1.0",
+	"private": true,
+	"main": "app/main.js",
+	"scripts": {
+		"dev": "electron .",
+		"build": "electron-builder",
+		"pack": "electron-builder --dir"
+	},
+	"devDependencies": {
+		"electron": "^31.0.0",
+		"electron-builder": "^24.13.3"
+	},
+	"dependencies": {
+		"music-metadata": "^7.14.0"
+	},
+	"build": {
+		"appId": "com.infplayer.app",
+		"productName": "infplayer",
+		"files": [
+			"app/**",
+			"node_modules/**",
+			"package.json"
+		],
+		"win": {
+			"target": "nsis"
+		}
+	}
+}

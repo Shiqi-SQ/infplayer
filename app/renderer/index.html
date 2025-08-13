@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>infplayer · Auto Mix</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: file:;">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="titlebar"></div><canvas id="viz-bg"></canvas>
+    <main class="layout" id="layoutRoot">
+        <section class="player" id="playerPane"><button id="btn-toggle-pl" class="collapse-tab" title="展开/收起播放列表"
+                aria-label="Toggle Playlist"><svg viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6" /></svg></button>
+            <div class="cover-wrap"><img id="cover" alt="cover">
+                <div class="cover-ph" id="cover-ph" aria-hidden="true"><svg viewBox="0 0 24 24">
+                        <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" /></svg></div>
+            </div>
+            <div class="now">
+                <div class="title" id="now-title">—</div>
+                <div class="artist" id="now-artist">—</div>
+            </div>
+            <div class="controls"><button class="icon-btn" id="btn-repeat" title="单曲循环"><svg viewBox="0 0 24 24"
+                        class="ico">
+                        <path
+                            d="M17 1l4 4-4 4V6H7a3 3 0 0 0-3 3v1H2V9a5 5 0 0 1 5-5h10V1zM7 23l-4-4 4-4v3h10a3 3 0 0 0 3-3v-1h2v1a5 5 0 0 1-5 5H7v3z" />
+                        </svg></button> <button class="icon-btn" id="btn-prev" title="上一首"><svg viewBox="0 0 24 24"
+                        class="ico">
+                        <path d="M6 6h2v12H6zM20 6v12l-9-6z" /></svg></button> <button class="icon-btn primary"
+                    id="btn-play" title="播放/暂停"><svg viewBox="0 0 24 24" class="ico" id="ico-play">
+                        <path d="M8 5v14l11-7z" /></svg> <svg viewBox="0 0 24 24" class="ico hidden" id="ico-pause">
+                        <path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg></button> <button class="icon-btn" id="btn-next"
+                    title="下一首"><svg viewBox="0 0 24 24" class="ico">
+                        <path d="M4 6v12l9-6zM18 6h2v12h-2z" /></svg></button></div>
+            <div class="progress"><span id="time-elapsed">0:00</span> <input id="seek" type="range" min="0" max="1000"
+                    value="0" step="1"> <span id="time-total">0:00</span></div>
+        </section>
+        <section class="playlist" id="playlistPane">
+            <div class="pl-toolbar"><button id="btn-add-files">添加文件</button> <button id="btn-add-folders">添加文件夹</button>
+                <button id="btn-del-selected">删除选中</button> <span class="hint">支持右键删除、拖动排序</span></div>
+            <ul id="playlist" class="list" aria-label="播放列表"></ul>
+        </section>
+    </main>
+    <div id="ctx-menu" class="ctx-menu hidden"><button id="ctx-delete">删除此曲目</button></div>
+    <div id="debug-panel" class="debug-panel hidden"></div>
+    <script src="./audioEngine.js"></script>
+    <script src="./visualizer.js"></script>
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>
